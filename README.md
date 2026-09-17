@@ -45,16 +45,16 @@ Use `tiny.en` for a faster English model, `small.en` for a larger English model,
 
 ## Updates and caching
 
-To force a fresh image build with the latest packages, run this from the repository directory:
-
-```sh
-docker build --pull --no-cache --tag transcribe:local ./docker
-```
-
 To delete downloaded models, run this when no transcription is running. The next transcription recreates the volume and downloads its selected model:
 
 ```sh
 docker volume rm transcribe-models
+```
+
+To force a fresh image build with the latest packages, run this from the repository directory:
+
+```sh
+docker build --pull --no-cache --tag transcribe:local ./docker
 ```
 
 You can also prune your various docker caches at the system level or in Docker Desktop.
