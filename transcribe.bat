@@ -18,14 +18,14 @@ if errorlevel 1 (
 )
 docker info >nul 2>&1
 if errorlevel 1 (
-  echo Error: Docker is unavailable. Start Docker Desktop with Linux containers. 1>&2
+  echo Error: Docker is unavailable. Start Docker Desktop first. 1>&2
   exit /b 1
 )
 
 set "MODEL=small.en"
 if not "%~2"=="" set "MODEL=%~2"
 
-docker build --tag transcribe:local "%~dp0lib"
+docker build --tag transcribe:local "%~dp0docker"
 if errorlevel 1 exit /b %errorlevel%
 
 docker run --rm ^
@@ -36,6 +36,6 @@ docker run --rm ^
 exit /b %errorlevel%
 
 :usage
-echo Usage: run.bat MEDIA_FILE [MODEL] 1>&2
-echo Example: run.bat "C:\Recordings\meeting.mp4" small.en 1>&2
+echo Usage: transcribe.bat MEDIA_FILE [MODEL] 1>&2
+echo Example: transcribe.bat "C:\Recordings\meeting.mp4" small.en 1>&2
 exit /b 1

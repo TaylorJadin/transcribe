@@ -1,4 +1,4 @@
 **
 !Dockerfile
 !flake.nix
-!transcribe.sh
+!app.sh

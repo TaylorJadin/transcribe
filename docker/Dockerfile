@@ -15,10 +15,10 @@ COPY --from=builder /build/result/ /runtime/
 # Create and set permissions on necessary folders
 RUN ["/runtime/bin/install", "-d", "-m", "1777", "/tmp", "/models"]
 
-COPY transcribe.sh /app/transcribe.sh
+COPY app.sh /app/app.sh
 
 ENV PATH=/runtime/bin \
     SSL_CERT_FILE=/runtime/etc/ssl/certs/ca-bundle.crt \
     MODEL=small.en MODEL_DIR=/models
 WORKDIR /data
-ENTRYPOINT ["/runtime/bin/bash", "/app/transcribe.sh"]
+ENTRYPOINT ["/runtime/bin/bash", "/app/app.sh"]
